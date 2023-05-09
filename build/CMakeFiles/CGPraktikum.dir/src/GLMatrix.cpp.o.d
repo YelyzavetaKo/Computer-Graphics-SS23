@@ -1,7 +1,7 @@
 CMakeFiles/CGPraktikum.dir/src/GLMatrix.cpp.o: \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLMatrix.cpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLMatrix.cpp \
  /usr/include/stdc-predef.h \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLMatrix.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLMatrix.hpp \
  /usr/include/c++/12/math.h /usr/include/c++/12/cmath \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -60,7 +60,7 @@ CMakeFiles/CGPraktikum.dir/src/GLMatrix.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/c++/12/cstddef \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLPoint.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLPoint.hpp \
  /usr/include/c++/12/iostream /usr/include/c++/12/ostream \
  /usr/include/c++/12/ios /usr/include/c++/12/iosfwd \
  /usr/include/c++/12/bits/stringfwd.h \
@@ -162,4 +162,4 @@ CMakeFiles/CGPraktikum.dir/src/GLMatrix.cpp.o: \
  /usr/include/c++/12/bits/basic_ios.tcc \
  /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/istream \
  /usr/include/c++/12/bits/istream.tcc \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLVector.hpp
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLVector.hpp

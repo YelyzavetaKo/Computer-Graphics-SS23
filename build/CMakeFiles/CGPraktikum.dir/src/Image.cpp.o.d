@@ -1,7 +1,7 @@
 CMakeFiles/CGPraktikum.dir/src/Image.cpp.o: \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Image.cpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Image.cpp \
  /usr/include/stdc-predef.h \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Image.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Image.hpp \
  /usr/include/c++/12/cstdlib \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -157,4 +157,4 @@ CMakeFiles/CGPraktikum.dir/src/Image.cpp.o: \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Color.hpp
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Color.hpp

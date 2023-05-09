@@ -1,9 +1,9 @@
 CMakeFiles/CGPraktikum.dir/src/Scene.cpp.o: \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Scene.cpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Scene.cpp \
  /usr/include/stdc-predef.h \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Scene.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Camera.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLMatrix.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Scene.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Camera.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLMatrix.hpp \
  /usr/include/c++/12/math.h /usr/include/c++/12/cmath \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -62,7 +62,7 @@ CMakeFiles/CGPraktikum.dir/src/Scene.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/c++/12/cstddef \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLPoint.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLPoint.hpp \
  /usr/include/c++/12/iostream /usr/include/c++/12/ostream \
  /usr/include/c++/12/ios /usr/include/c++/12/iosfwd \
  /usr/include/c++/12/bits/stringfwd.h \
@@ -164,8 +164,8 @@ CMakeFiles/CGPraktikum.dir/src/Scene.cpp.o: \
  /usr/include/c++/12/bits/basic_ios.tcc \
  /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/istream \
  /usr/include/c++/12/bits/istream.tcc \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLVector.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/math.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLVector.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/math.hpp \
  /usr/include/c++/12/array /usr/include/c++/12/compare \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
  /usr/include/c++/12/bits/stl_vector.h \
@@ -185,11 +185,11 @@ CMakeFiles/CGPraktikum.dir/src/Scene.cpp.o: \
  /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
  /usr/include/c++/12/backward/auto_ptr.h \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/structs.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Color.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Model.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Material.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Sphere.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/structs.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Color.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Model.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Material.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Sphere.hpp \
  /usr/include/assimp/postprocess.h /usr/include/assimp/types.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h \

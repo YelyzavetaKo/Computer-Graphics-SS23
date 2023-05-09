@@ -1,5 +1,5 @@
 CMakeFiles/CGPraktikum.dir/src/main.cpp.o: \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/main.cpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/main.cpp \
  /usr/include/stdc-predef.h /usr/include/assimp/postprocess.h \
  /usr/include/assimp/types.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h \
@@ -202,13 +202,13 @@ CMakeFiles/CGPraktikum.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/12/bits/opt_random.h \
  /usr/include/c++/12/bits/random.tcc /usr/include/c++/12/numeric \
  /usr/include/c++/12/bits/stl_numeric.h /usr/include/c++/12/bit \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Scene.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Camera.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLMatrix.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Scene.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Camera.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLMatrix.hpp \
  /usr/include/c++/12/math.h /usr/include/c++/12/cstddef \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLPoint.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLVector.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/math.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLPoint.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLVector.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/math.hpp \
  /usr/include/c++/12/array /usr/include/c++/12/compare \
  /usr/include/c++/12/memory \
  /usr/include/c++/12/bits/stl_raw_storage_iter.h \
@@ -224,15 +224,15 @@ CMakeFiles/CGPraktikum.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
  /usr/include/c++/12/backward/auto_ptr.h \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/structs.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Color.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Model.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Material.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Sphere.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/SolidRenderer.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Image.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/structs.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Color.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Model.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Material.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Sphere.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/SolidRenderer.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Image.hpp \
  /usr/include/c++/12/fstream /usr/include/c++/12/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++io.h \
  /usr/include/c++/12/bits/fstream.tcc \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/WireframeRenderer.hpp
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/WireframeRenderer.hpp

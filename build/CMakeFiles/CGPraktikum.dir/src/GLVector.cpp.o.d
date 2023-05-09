@@ -1,7 +1,7 @@
 CMakeFiles/CGPraktikum.dir/src/GLVector.cpp.o: \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLVector.cpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLVector.cpp \
  /usr/include/stdc-predef.h \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLVector.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLVector.hpp \
  /usr/include/c++/12/math.h /usr/include/c++/12/cmath \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \

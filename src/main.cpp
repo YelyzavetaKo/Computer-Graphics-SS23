@@ -18,23 +18,30 @@
 
 
 int main(int argc, char **argv) {
-    
-    
-  // Dimensionen des Ergebnisbildes im Konstruktor setzen
-  std::shared_ptr<Image> img = std::make_shared<Image>(400, 300);
-
-  // Verwendete Modelle festlegen
-  std::vector<std::string> path_vector;
-  path_vector.push_back(std::string("../data/bunny/bunny_scaled.ply"));
-  path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
-  // Erzeuge die Szene mit dem default Konstruktor und lade die Modelle
-  auto scene = std::make_shared<Scene>();
-  scene->load(path_vector);
 
 
-  /* Aufgabenblatt 1: Instanziieren Sie einen WireframeRenderer */
-    auto renderer = std::make_shared<WireframeRenderer>(scene, image);
-  /* Aufgabenblatt 1, Aufgabe 2: Testen Sie Ihre drawBresenhamLine-Methode hier */
+    // Dimensionen des Ergebnisbildes im Konstruktor setzen
+    std::shared_ptr <Image> img = std::make_shared<Image>(400, 300);
+
+    // Verwendete Modelle festlegen
+    std::vector <std::string> path_vector;
+    path_vector.push_back(std::string("../data/bunny/bunny_scaled.ply"));
+    path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
+    // Erzeuge die Szene mit dem default Konstruktor und lade die Modelle
+    auto scene = std::make_shared<Scene>();
+    scene->load(path_vector);
+
+
+    /* Aufgabenblatt 1: Instanziieren Sie einen WireframeRenderer */
+    auto renderer = std::make_shared<WireframeRenderer>(scene, img);
+    /* Aufgabenblatt 1, Aufgabe 2: Testen Sie Ihre drawBresenhamLine-Methode hier */
+    // Draw a line using the Bresenham algorithm
+    // Save the image to a file
+    GLPoint p1(100.0, 50.0, 0.0);
+    GLPoint p2(200.0, 150.0, 0.0);
+    Color color(255, 255, 255);
+    renderer->drawBresenhamLine(p1, p2, color);
+    img->writeAsPPM("wireframe.ppm");
 
   /* Aufgabenblatt 1, Aufgabe 3: Testen Sie Ihre seedFillArea-Methode hier */  
 
@@ -79,16 +86,17 @@ int main(int argc, char **argv) {
   /* Aufgabenblatt 3: erzeugen Sie einen SolidRenderer (vorzugsweise mir einem shared_ptr) und rufen sie die Funktion renderRaycast auf */
   
   // Schreiben des Bildes in Datei
-  if (argc > 1) {
-    img->writeAsPPM(argv[1]);
-    std::cout << "Bild mit Dimensionen " << img->getWidth() << "x"
-              << img->getHeight() << " in Datei " << argv[1] << " geschrieben."
-              << std::endl;
-  } else {
-    std::cerr
-        << "Fehler: Kein Dateiname angegeben. Es wurde kein Output generiert."
-        << std::endl;
-  }
 
-  return 0;
+if (argc > 1) {
+img->writeAsPPM(argv[1]);
+std::cout << "Bild mit Dimensionen " << img->getWidth() << "x"
+<< img->getHeight() << " in Datei " << argv[1] << " geschrieben."
+<< std::endl;
+} else {
+std::cerr
+<< "Fehler: Kein Dateiname angegeben. Es wurde kein Output generiert."
+<< std::endl;
+}
+
+return 0;
 }

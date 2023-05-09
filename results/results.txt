@@ -1,9 +1,0 @@
-
--- Platzieren Sie Ihre gerenderten Bilder in diesem Ordner. --
-
-Vorbereitung:
-	1) Einen Ordner höher: mkdir build && cd build
-	2) cmake .. && make
-
-Ausführung dort:
-	./CGPraktikum ../results/dateiname.ppm

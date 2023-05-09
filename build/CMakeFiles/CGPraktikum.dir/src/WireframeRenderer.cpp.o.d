@@ -1,8 +1,8 @@
 CMakeFiles/CGPraktikum.dir/src/WireframeRenderer.cpp.o: \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/WireframeRenderer.cpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/WireframeRenderer.cpp \
  /usr/include/stdc-predef.h \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/WireframeRenderer.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Image.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/WireframeRenderer.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Image.hpp \
  /usr/include/c++/12/cstdlib \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -158,10 +158,10 @@ CMakeFiles/CGPraktikum.dir/src/WireframeRenderer.cpp.o: \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Color.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Model.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Material.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/math.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Color.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Model.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Material.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/math.hpp \
  /usr/include/c++/12/array /usr/include/c++/12/compare \
  /usr/include/c++/12/limits /usr/include/c++/12/memory \
  /usr/include/c++/12/bits/stl_tempbuf.h \
@@ -178,7 +178,7 @@ CMakeFiles/CGPraktikum.dir/src/WireframeRenderer.cpp.o: \
  /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/c++/12/bits/atomic_lockfree_defines.h \
  /usr/include/c++/12/backward/auto_ptr.h \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLMatrix.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLMatrix.hpp \
  /usr/include/c++/12/math.h /usr/include/c++/12/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -190,9 +190,9 @@ CMakeFiles/CGPraktikum.dir/src/WireframeRenderer.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
  /usr/include/c++/12/cstddef \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLPoint.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/GLVector.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/structs.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Scene.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Camera.hpp \
- /home/lisa/Documents/Uni/CG/Codebasis_Computergrafik_2023/src/Sphere.hpp
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLPoint.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/GLVector.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/structs.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Scene.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Camera.hpp \
+ /home/lisa/CLionProjects/Computer-Graphics-SS23/src/Sphere.hpp
