@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 
 
   /* Aufgabenblatt 1: Instanziieren Sie einen WireframeRenderer */
-
+    auto renderer = std::make_shared<WireframeRenderer>(scene, image);
   /* Aufgabenblatt 1, Aufgabe 2: Testen Sie Ihre drawBresenhamLine-Methode hier */
 
   /* Aufgabenblatt 1, Aufgabe 3: Testen Sie Ihre seedFillArea-Methode hier */  
