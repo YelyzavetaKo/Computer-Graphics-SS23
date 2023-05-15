@@ -38,9 +38,23 @@ int main(int argc, char **argv) {
     // Draw a line using the Bresenham algorithm
     // Save the image to a file
     GLPoint p1(100.0, 50.0, 0.0);
-    GLPoint p2(200.0, 150.0, 0.0);
+    GLPoint p2(300.0, 50.0, 0.0);
+    GLPoint p3(((p2(0)-p1(0))/2) + p1(0), p2(1) + 50, 0.0);
+    GLPoint p4(p1(0), p1(1) + 100, 0.0);
+    GLPoint p5(p2(0), p2(1) + 100, 0.0);
+    GLPoint p6(((p5(0)-p4(0))/2) + p4(0), p5(1) + 50, 0.0);
     Color color(255, 255, 255);
     renderer->drawBresenhamLine(p1, p2, color);
+    renderer->drawBresenhamLine(p1, p3, color);
+    renderer->drawBresenhamLine(p3, p2, color);
+    renderer->drawBresenhamLine(p3, p2, color);
+    renderer->drawBresenhamLine(p4, p3, color);
+    renderer->drawBresenhamLine(p5, p3, color);
+    renderer->drawBresenhamLine(p4, p5, color);
+    renderer->drawBresenhamLine(p1, p4, color);
+    renderer->drawBresenhamLine(p2, p5, color);
+    renderer->drawBresenhamLine(p4, p6, color);
+    renderer->drawBresenhamLine(p6, p5, color);
     img->writeAsPPM("wireframe.ppm");
 
   /* Aufgabenblatt 1, Aufgabe 3: Testen Sie Ihre seedFillArea-Methode hier */  
