@@ -27,6 +27,7 @@ int main(int argc, char **argv) {
     std::vector <std::string> path_vector;
     path_vector.push_back(std::string("../data/bunny/bunny_scaled.ply"));
     path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
+    path_vector.push_back(std::string("../data/bishop/Bishop.ply"));
     // Erzeuge die Szene mit dem default Konstruktor und lade die Modelle
     auto scene = std::make_shared<Scene>();
     scene->load(path_vector);
@@ -37,33 +38,154 @@ int main(int argc, char **argv) {
     /* Aufgabenblatt 1, Aufgabe 2: Testen Sie Ihre drawBresenhamLine-Methode hier */
     // Draw a line using the Bresenham algorithm
     // Save the image to a file
+    /*
     GLPoint p1(100.0, 50.0, 0.0);
-    GLPoint p2(300.0, 50.0, 0.0);
-    GLPoint p3(((p2(0)-p1(0))/2) + p1(0), p2(1) + 50, 0.0);
-    GLPoint p4(p1(0), p1(1) + 100, 0.0);
-    GLPoint p5(p2(0), p2(1) + 100, 0.0);
-    GLPoint p6(((p5(0)-p4(0))/2) + p4(0), p5(1) + 50, 0.0);
-    Color color(255, 255, 255);
+    GLPoint p2(200.0, 150.0, 0.0);
+    Color color(1.0, 0.0, 1.0);
     renderer->drawBresenhamLine(p1, p2, color);
-    renderer->drawBresenhamLine(p1, p3, color);
-    renderer->drawBresenhamLine(p3, p2, color);
-    renderer->drawBresenhamLine(p3, p2, color);
-    renderer->drawBresenhamLine(p4, p3, color);
-    renderer->drawBresenhamLine(p5, p3, color);
-    renderer->drawBresenhamLine(p4, p5, color);
-    renderer->drawBresenhamLine(p1, p4, color);
-    renderer->drawBresenhamLine(p2, p5, color);
-    renderer->drawBresenhamLine(p4, p6, color);
-    renderer->drawBresenhamLine(p6, p5, color);
     img->writeAsPPM("wireframe.ppm");
 
+    GLPoint bl(20.0, 10.0, 0.0);
+    GLPoint br(10.0, 10.0, 0.0);
+    GLPoint tl(20.0, 20.0, 0.0);
+    GLPoint tr(10.0, 20.0, 0.0);
+
+    renderer->drawBresenhamLine(bl, br, color);
+    renderer->drawBresenhamLine(bl, tl, color);
+    renderer->drawBresenhamLine(br, tr, color);
+
+    GLPoint obl(25.0, 5.0, 0.0);
+    GLPoint obr(5.0, 5.0, 0.0);
+    GLPoint otl(25.0, 25.0, 0.0);
+    GLPoint otr(5.0, 25.0, 0.0);
+
+    renderer->drawBresenhamLine(obl, obr, color);
+    renderer->drawBresenhamLine(obl, otl, color);
+    renderer->drawBresenhamLine(obr, otr, color);
+    renderer->drawBresenhamLine(otl, otr, color);
+
+    GLPoint yellow_seed(15.0, 15.0, 0.0);
+    Color yellow(1.0, 1.0, 0.0);
+    renderer->seedFillArea(yellow_seed, color, yellow);
+    */
+
   /* Aufgabenblatt 1, Aufgabe 3: Testen Sie Ihre seedFillArea-Methode hier */  
+  /*
+    GLPoint p3(250.0, 150.0, 0.0);
+    GLPoint p4(250.0, 300.0, 0.0);
+    GLPoint p5(400.0, 300.0, 0.0);
+    GLPoint p6(400.0, 150.0, 0.0);
+    Color borderColor(0.0, 0.0, 0.0);
+    renderer->drawBresenhamLine(p3, p4, borderColor);
+    renderer->drawBresenhamLine(p4, p5, borderColor);
+    renderer->drawBresenhamLine(p5, p6, borderColor);
+    renderer->drawBresenhamLine(p6, p3, borderColor);
+
+    GLPoint seed(300.0, 250.0, 0.0);
+    Color fillColor(0.1, 0.1, 0.1);
+    renderer->seedFillArea(seed, borderColor, fillColor);
+    img->writeAsPPM("wireframe.ppm");
+
+    GLPoint f1(325.0, 190.0, 0.0);
+    GLPoint f2(325.0, 225.0, 0.0);
+    GLPoint f3(375.0, 220.0, 0.0);
+    GLPoint f4(275.0, 220.0, 0.0);
+    GLPoint f5(330.0, 193.0, 0.0);
+    GLPoint f6(325.0, 200.0, 0.0);
+    GLPoint f7(320.0, 193.0, 0.0);
+    GLPoint f8(310.0, 223.0, 0.0);
+    GLPoint f9(340.0, 223.0, 0.0);
+    GLPoint f10(297.0, 221.0, 0.0);
+    GLPoint f11(353.0, 221.0, 0.0);
+    GLPoint f12(314.0, 213.0, 0.0);
+    GLPoint f13(336.0, 213.0, 0.0);
+    GLPoint f14(337.0, 265.0, 0.0);
+    GLPoint f15(313.0, 265.0, 0.0);
+    GLPoint f16(361.0, 252.0, 0.0);
+    GLPoint f17(289.0, 252.0, 0.0);
+    GLPoint f18(366.0, 285.0, 0.0);
+    GLPoint f19(283.0, 285.0, 0.0);
+
+    renderer->drawBresenhamLine(f1, f2, borderColor);
+    renderer->drawBresenhamLine(f2, f3, borderColor);
+    renderer->drawBresenhamLine(f3, f1, borderColor);
+    renderer->drawBresenhamLine(f1, f4, borderColor);
+    renderer->drawBresenhamLine(f2, f4, borderColor);
+    renderer->drawBresenhamLine(f5, f6, borderColor);
+    renderer->drawBresenhamLine(f6, f7, borderColor);
+    renderer->drawBresenhamLine(f5, f9, borderColor);
+    renderer->drawBresenhamLine(f7, f8, borderColor);
+    renderer->drawBresenhamLine(f10, f12, borderColor);
+    renderer->drawBresenhamLine(f11, f13, borderColor);
+    renderer->drawBresenhamLine(f2, f14, borderColor);
+    renderer->drawBresenhamLine(f2, f15, borderColor);
+    renderer->drawBresenhamLine(f14, f15, borderColor);
+    renderer->drawBresenhamLine(f14, f16, borderColor);
+    renderer->drawBresenhamLine(f15, f17, borderColor);
+    renderer->drawBresenhamLine(f8, f17, borderColor);
+    renderer->drawBresenhamLine(f9, f16, borderColor);
+    renderer->drawBresenhamLine(f4, f17, borderColor);
+    renderer->drawBresenhamLine(f3, f16, borderColor);
+    renderer->drawBresenhamLine(f15, f19, borderColor);
+    renderer->drawBresenhamLine(f14, f18, borderColor);
+    renderer->drawBresenhamLine(f17, f19, borderColor);
+    renderer->drawBresenhamLine(f16, f18, borderColor);
+
+    Color black(0.05, 0.05, 0.05);
+    Color white(0.95, 0.95, 0.95);
+    Color lightOrange(0.9, 0.45, 0.0);
+
+    GLPoint s1(327.0, 193.0, 0.0);
+    GLPoint s2(323.0, 193.0, 0.0);
+    GLPoint s3(306.0, 220.0, 0.0);
+    GLPoint s4(344.0, 220.0, 0.0);
+    GLPoint s5(327.0, 210.0, 0.0);
+    GLPoint s6(323.0, 210.0, 0.0);
+    GLPoint s7(300.0, 210.0, 0.0);
+    GLPoint s8(350.0, 210.0, 0.0);
+    GLPoint s9(325.0, 230.0, 0.0);
+    GLPoint s10(337.0, 230.0, 0.0);
+    GLPoint s11(312.0, 230.0, 0.0);
+    GLPoint s12(350.0, 230.0, 0.0);
+    GLPoint s13(300.0, 230.0, 0.0);
+    GLPoint s14(340.0, 265.0, 0.0);
+    GLPoint s15(310.0, 265.0, 0.0);
+
+    renderer->seedFillArea(s1, borderColor, black);
+    renderer->seedFillArea(s2, borderColor, black);
+    renderer->seedFillArea(s3, borderColor, black);
+    renderer->seedFillArea(s4, borderColor, black);
+    renderer->seedFillArea(s5, borderColor, lightOrange);
+    renderer->seedFillArea(s6, borderColor, lightOrange);
+    renderer->seedFillArea(s7, borderColor, white);
+    renderer->seedFillArea(s8, borderColor, white);
+    renderer->seedFillArea(s9, borderColor, lightOrange);
+    renderer->seedFillArea(s10, borderColor, lightOrange);
+    renderer->seedFillArea(s11, borderColor, lightOrange);
+    renderer->seedFillArea(s12, borderColor, lightOrange);
+    renderer->seedFillArea(s13, borderColor, lightOrange);
+    renderer->seedFillArea(s14, borderColor, lightOrange);
+    renderer->seedFillArea(s15, borderColor, lightOrange);
+*/
 
   /* Aufgabenblatt 2, Aufgabe 3: Setzen Sie die Transformationen der Modelle */
+  Color wireframeColor(0.8, 0.4, 0.0);
+
+  Model &bunny = scene->getModels()[0];
+  bunny.setScale(GLVector(0.8, 0.8, 0.8));
+  bunny.setRotation(GLVector(0.0, 5.0, 0.0));
+  bunny.setTranslation(GLVector(250.0, 100.0, 0.0));
+
+  Model &cube = scene->getModels()[1];
+  cube.setScale(GLVector(0.9, 0.9, 0.9));
+  cube.setRotation(GLVector(20.0, 45.0, 0.0));
+  cube.setTranslation(GLVector(100.0, 100.0, 0.0));
+
 
   /* Aufgabenblatt 2, Aufgabe 1: Rufen Sie Ihre renderScene-Methode hier auf */
 
-  
+  renderer->renderScene(wireframeColor);
+  img->writeAsPPM("wireframe.ppm");
 
 
   /* Setup der Camera - Erst ab Aufgabenblatt 3 relevant. */

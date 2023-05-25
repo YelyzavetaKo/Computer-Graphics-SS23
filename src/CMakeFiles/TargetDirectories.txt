@@ -1,0 +1,3 @@
+/home/nathan/Computer-Graphics-SS23/src/CMakeFiles/CGPraktikum.dir
+/home/nathan/Computer-Graphics-SS23/src/CMakeFiles/edit_cache.dir
+/home/nathan/Computer-Graphics-SS23/src/CMakeFiles/rebuild_cache.dir
