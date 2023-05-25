@@ -33,9 +33,10 @@ class GLMatrix {
 inline std::ostream &operator<<(std::ostream &os, const GLMatrix &m) {
   for (size_t i = 0; i < 4; ++i) {
     for (size_t j = 0; j < 4; ++j) {
-      os << round(m(i, j) * 1000.0f) / 1000.0f << " ";
+      os << round(m(i, j) * 1000.0f) / 1000.0f << "\t";
     }
     os << "\n";
   }
+  os << "\n";
   return os;
 }

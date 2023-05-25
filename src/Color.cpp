@@ -28,3 +28,13 @@ Color &Color::operator+=(const Color &rhs) {
 
   return *this;
 }
+
+/*
+bool operator==(const Color &color1, const Color &color2) {
+  return (color1.r == color2.r) && (color1.g == color2.g) && (color1.b == color2.b);
+}
+ 
+Color &Color::operator==(const Color &rhs) {
+  return (r == rhs.r) && (g == rhs.g) && (b == rhs.b);
+}
+*/

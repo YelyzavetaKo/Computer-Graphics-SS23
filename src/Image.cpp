@@ -35,6 +35,16 @@ std::vector<Color> &Image::getValues() { return mValues; }
 ** Setzt den Pixelwert an der Stelle (x,y) auf die Farbe color
 ** macht nichts wenn (x,y) außerhalb der Dimension des Bildes liegt
 **/
+
+// Added method to get Pixel color by x-y-Coordinate
+Color Image::getValue(int x, int y) {
+  Color color(1.0, 1.0, 1.0);
+  if (x < mWidth && y < mHeight) {
+    color = mValues[y * mWidth + x];
+  }
+  return color;
+}
+
 void Image::setValue(int x, int y, Color color) {
   if (x < mWidth && y < mHeight) {
     mValues[y * mWidth + x] = color;

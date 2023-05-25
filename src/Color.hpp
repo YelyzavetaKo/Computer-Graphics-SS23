@@ -16,5 +16,11 @@ class Color {
 
   Color &operator+=(const Color &rhs);
 
+/*
+  Color &operator==(const Color &rhs);
+
+  bool operator==(const Color &color1, const Color &color2);
+*/
+
   float r, g, b;
 };

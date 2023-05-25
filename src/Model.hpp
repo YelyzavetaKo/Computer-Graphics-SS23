@@ -3,6 +3,7 @@
 #include "Material.hpp"
 #include "math.hpp"
 #include "structs.hpp"
+#include <cmath>
 
 class Model {
  public:
