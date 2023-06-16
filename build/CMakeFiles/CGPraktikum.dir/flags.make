@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = 
 
-CXX_FLAGS = -g -std=c++14 -Wall -Wfloat-conversion -fopenmp
+CXX_FLAGS = -O3 -DNDEBUG -std=c++14 -Wall -Wfloat-conversion -fopenmp
 

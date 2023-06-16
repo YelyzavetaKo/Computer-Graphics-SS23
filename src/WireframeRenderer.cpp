@@ -22,9 +22,6 @@ void WireframeRenderer::renderScene(Color color) {
             this->drawBresenhamLine(model.getTransformation()*tri.vertex[0], model.getTransformation()*tri.vertex[1], color);
             this->drawBresenhamLine(model.getTransformation()*tri.vertex[1], model.getTransformation()*tri.vertex[2], color);
             this->drawBresenhamLine(model.getTransformation()*tri.vertex[2], model.getTransformation()*tri.vertex[0], color);
-            /*
-            std::cout << tri.vertex[0] << " " << tri.vertex[1] << "\t" << model.getTransformation()*tri.vertex[0] << " " << model.getTransformation()*tri.vertex[1] << std::endl;
-            */
         }
     }
 }
@@ -116,12 +113,6 @@ void WireframeRenderer::seedFillArea(GLPoint seed, Color borderColor, Color fill
                             points.push(point);
                         }
                     }
-                    /*
-                    points.push(right);
-                    points.push(up);
-                    points.push(left);
-                    points.push(down);
-                    */
                 }
             }
         }
