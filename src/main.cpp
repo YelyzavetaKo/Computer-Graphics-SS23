@@ -27,7 +27,6 @@ int main(int argc, char **argv) {
     std::vector <std::string> path_vector;
     path_vector.push_back(std::string("../data/bunny/bunny_scaled.ply"));
     path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
-    path_vector.push_back(std::string("../data/bishop/Bishop.ply"));
     // Erzeuge die Szene mit dem default Konstruktor und lade die Modelle
     auto scene = std::make_shared<Scene>();
     scene->load(path_vector);
@@ -169,17 +168,17 @@ int main(int argc, char **argv) {
 */
 
   /* Aufgabenblatt 2, Aufgabe 3: Setzen Sie die Transformationen der Modelle */
-  Color wireframeColor(0.8, 0.4, 0.0);
+  Color wireframeColor(1.0, 0.5, 0.0);
 
   Model &bunny = scene->getModels()[0];
-  bunny.setScale(GLVector(0.8, 0.8, 0.8));
-  bunny.setRotation(GLVector(0.0, 5.0, 0.0));
   bunny.setTranslation(GLVector(250.0, 100.0, 0.0));
+  bunny.setRotation(GLVector(0.0, M_PI/180*5.0, 0.0));
+  bunny.setScale(GLVector(0.8, 0.8, 0.8));
 
   Model &cube = scene->getModels()[1];
-  cube.setScale(GLVector(0.9, 0.9, 0.9));
-  cube.setRotation(GLVector(20.0, 45.0, 0.0));
   cube.setTranslation(GLVector(100.0, 100.0, 0.0));
+  cube.setRotation(GLVector(M_PI/180*20.0, M_PI/180*45.0, 0.0));
+  cube.setScale(GLVector(0.9, 0.9, 0.9));
 
 
   /* Aufgabenblatt 2, Aufgabe 1: Rufen Sie Ihre renderScene-Methode hier auf */
@@ -191,24 +190,26 @@ int main(int argc, char **argv) {
   /* Setup der Camera - Erst ab Aufgabenblatt 3 relevant. */
   // Diese Einstellungen beziehen sich auf den world space
   // Beachten Sie, dass Sie in diesem Praktikum keine explizite Umwandlung in
-  // den ViewSpace benötigen, da die Strahen für Raycasting und Raytracing im
+  // den ViewSpace benötigen, da die Strahlen für Raycasting und Raytracing im
   // World space definiert sind. Modelle müssen also lediglich in den World
   // space überführt werden
   
   /* Aufgabenblatt 3:  kommentieren Sie die Zeilen wieder ein, die eine Kamera erzeugen und zur Scene hinzufügen*/
   
-  //  auto cam = std::make_shared<Camera>();
-  //GLPoint eye = GLPoint(0.0, 0.0, 300.0);
-  //cam->setEyePoint(eye);
-  //cam->setUp(GLVector(0.0, 1.0, 0.0));
-  //GLVector viewDirection = GLVector(0.0, 0, -1.0);
-  //viewDirection.normalize();
-  //cam->setViewDirection(viewDirection);
-  //cam->setSize(img->getWidth(), img->getHeight());
-  //scene->setCamera(cam);
+  auto cam = std::make_shared<Camera>();
+  GLPoint eye = GLPoint(0.0, 0.0, 300.0);
+  cam->setEyePoint(eye);
+  cam->setUp(GLVector(0.0, 1.0, 0.0));
+  GLVector viewDirection = GLVector(0.0, 0, -1.0);
+  viewDirection.normalize();
+  cam->setViewDirection(viewDirection);
+  cam->setSize(img->getWidth(), img->getHeight());
+  scene->setCamera(cam);
 
 
   /* Aufgabenblatt 3: Erzeugen Sie mindestens eine Kugel und fügen Sie diese zur Szene hinzu*/
+
+  scene->addSphere(Sphere(GLPoint(50.0, 50.0, 0.0), 5.0));
     
   /* Aufgabenblatt 4: Setzen Sie materialeigenschaften für die Kugelen und die Modelle. Die Materialeigenschaften für eine Darstellung entsprechend der Beispiellösung ist in der Aufgabenstellung gegeben. */
 
@@ -219,8 +220,11 @@ int main(int argc, char **argv) {
   /* Aufgabenblatt 4  Fügen Sie ein Licht zur Szene hinzu */
   
     
-  /* Aufgabenblatt 3: erzeugen Sie einen SolidRenderer (vorzugsweise mir einem shared_ptr) und rufen sie die Funktion renderRaycast auf */
+  /* Aufgabenblatt 3: erzeugen Sie einen SolidRenderer (vorzugsweise mit einem shared_ptr) und rufen sie die Funktion renderRaycast auf */
   
+  auto solidRenderer = std::make_shared<SolidRenderer>(scene, img, cam);
+  solidRenderer->renderRaycast();
+
   // Schreiben des Bildes in Datei
 
 if (argc > 1) {

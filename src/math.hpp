@@ -51,6 +51,19 @@ inline double dotProduct(const GLVector &lhs, const GLVector &rhs) {
   return lhs(0) * rhs(0) + lhs(1) * rhs(1) + lhs(2) * rhs(2);
 }
 
+inline void barycentricCoordinates(GLPoint p, GLPoint a, GLPoint b, GLPoint c, float &u, float &v, float &w) {
+  GLVector v0 = b - a, v1 = c - a, v2 = p - a;
+  float d00 = dotProduct(v0, v0);
+  float d01 = dotProduct(v0, v1);
+  float d11 = dotProduct(v1, v1);
+  float d20 = dotProduct(v2, v0);
+  float d21 = dotProduct(v2, v1);
+  float denom = d00 * d11 - d01 * d01;
+  v = (d11 * d20 - d01 * d21) / denom;
+  w = (d00 * d21 - d01 * d20) / denom;
+  u = 1.0f - v - w;
+}
+
 inline int sgn(int x) { return (x > 0) ? 1 : (x < 0) ? -1 : 0; }
 
 /** Aufgabenblatt 2, Aufgabe 2 **/
