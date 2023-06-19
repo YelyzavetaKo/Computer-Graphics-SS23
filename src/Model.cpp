@@ -74,3 +74,5 @@ void Model::updateMatrix() {
 GLMatrix Model::getTransformation() const { return mMatrix; }
 
 Material Model::getMaterial() const { return mMaterial; }
+
+std::vector<Triangle> Model::getTriangles() const { return mTriangles; }

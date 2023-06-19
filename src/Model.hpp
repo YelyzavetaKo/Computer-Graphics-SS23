@@ -19,6 +19,7 @@ class Model {
   // Die Dreiecke aus denen das Modell besteht
   std::vector<Triangle> mTriangles;
 
+  std::vector<Triangle> getTriangles() const;
   // Das Material des Modells
   Material getMaterial() const;
 
