@@ -18,23 +18,27 @@ Scene::Scene() {}
  */
 bool Scene::intersect(const Ray &ray, HitRecord &hitRecord,
                       const float epsilon) {
-    for (const auto& sphere : mSpheres) {
-        if (sphereIntersect(ray, sphere, hitRecord, epsilon)) {
-            return true;
-        }
+    bool hit = false;
+    for (int s = 0; s < this->getSpheres().size(); s++) {
+      if (sphereIntersect(ray, this->getSpheres()[s], hitRecord, epsilon)) {
+        hit = true;
+        hitRecord.sphereId = s;
+      }
     }
-    for (const auto& model : mModels) {
-        for(const auto& triangle : model.mTriangles) {
+    for (int m = 0; m < this->getModels().size(); m++) {
+        for(int t = 0; t < this->getModels()[m].getTriangles().size(); t++) {
             Triangle transformedTriangle;
-            for (size_t i = 0; i < triangle.vertex.size(); i++) {
-                transformedTriangle.vertex[i] = model.mTransformation * triangle.vertex[i];
+            for (size_t i = 0; i < this->getModels()[m].mTriangles[t].vertex.size(); i++) {
+                transformedTriangle.vertex[i] = this->getModels()[m].getTransformation() * this->getModels()[m].mTriangles[t].vertex[i];
             }
             if (triangleIntersect(ray, transformedTriangle, hitRecord, epsilon)) {
-                return true;
+                hit = true;
+                hitRecord.modelId = m;
+                hitRecord.triangleId = t;
             }
         }
     }
-    return false;
+    return hit;
 }
 
 /** Aufgabenblatt 3: Gibt zurück ob ein gegebener Strahl ein Dreieck  eines Modells der Szene trifft
@@ -44,13 +48,7 @@ bool Scene::intersect(const Ray &ray, HitRecord &hitRecord,
 bool Scene::triangleIntersect(const Ray &ray, const Triangle &triangle,
                               HitRecord &hitRecord, const float epsilon) {
     //vertex[1] = b, vertex[2] = c, vertex[0] = a
-    GLVector ab = triangle.vertex[1]- triangle.vertex[0];
-    GLVector ac = triangle.vertex[2]- triangle.vertex[0];
-    hitRecord.normal = crossProduct(ab, ac);
-    LVector difference = GLVector(tri.vertex[0](0) - ray.origin(0), tri.vertex[0](1) - ray.origin(1), tri.vertex[0](2) - ray.origin(2));
-    float t = dotProduct(difference, normal) / dotProduct(ray.direction, normal);
-    t = Dot(ap, n);
-
+    return false;
 }
 
 /** Aufgabenblatt 3: Gibt zurück ob ein gegebener Strahl eine Kugel der Szene trifft
@@ -59,7 +57,33 @@ bool Scene::triangleIntersect(const Ray &ray, const Triangle &triangle,
 */
 bool Scene::sphereIntersect(const Ray &ray, const Sphere &sphere,
                             HitRecord &hitRecord, const float epsilon) {
-    return false; // Platzhalter; entfernen bei der Implementierung
+    double a = dotProduct(ray.direction, ray.direction);
+    double b = 2 * dotProduct(ray.direction, ray.origin - sphere.getPosition());
+    double c = dotProduct(ray.origin - sphere.getPosition(), ray.origin - sphere.getPosition()) - (sphere.getRadius() * sphere.getRadius());
+
+    // Calculate the discriminant
+    double discriminant = b * b - 4 * a * c;
+    if (discriminant < 0) {
+      return false;
+    }
+    double parameter;
+    if (discriminant > 0) {
+        // Two real and distinct roots
+        // double root1 = (-b + std::sqrt(discriminant)) / (2 * a);
+        parameter = (-b - std::sqrt(discriminant)) / (2 * a);
+    } else if (discriminant == 0) {
+        // One real root (repeated)
+        parameter = -b / (2 * a);
+    }
+    if (parameter <= hitRecord.parameter) {
+      hitRecord.parameter = parameter;
+      hitRecord.intersectionPoint = ray.origin + ray.direction * parameter;
+      hitRecord.rayDirection = ray.direction;
+      hitRecord.normal = hitRecord.intersectionPoint - sphere.getPosition();
+      hitRecord.normal.normalize();
+      return true;
+    }
+    return false;
 }
 
 /**

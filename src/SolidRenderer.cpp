@@ -42,14 +42,14 @@ void SolidRenderer::renderRaycast() {
 }
 
 void SolidRenderer::computeImageRow(size_t rowNumber) {
-    for(size_t column = 0; i -> mImage->getWidth(); ++i ){
+    for(size_t column = 0; i -> mImage->getWidth(); ++i){
         Ray ray = mCamera->getRay(rowNumber, column);
         Color color = Color(255.0, 255.0, 0.0);
         HitRecord pxel = {.color = color,.parameter = INFINITY, .triangleId = -1, .modelId = -1, .sphereId = -1, };
         if (mScene->intersect(ray, pxel)) {
-            mImage->setValue(rowNumber, column, pxel.color);
+          mImage->setValue(rowNumber, column, pxel.color);
         }else {
-            mImage->setValue(rowNumber, column, Color(1.0, 1.0, 1.0));
+          mImage->setValue(rowNumber, column, Color(1.0, 1.0, 1.0));
         }
     }
 
