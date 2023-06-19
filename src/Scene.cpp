@@ -23,6 +23,7 @@ bool Scene::intersect(const Ray &ray, HitRecord &hitRecord,
       if (sphereIntersect(ray, this->getSpheres()[s], hitRecord, epsilon)) {
         hit = true;
         hitRecord.sphereId = s;
+        hitRecord.color = this->getSpheres()[s].getMaterial().color;
       }
     }
     for (int m = 0; m < this->getModels().size(); m++) {
