@@ -26,7 +26,7 @@ bool Scene::intersect(const Ray &ray, HitRecord &hitRecord,
       }
     }
     for (int m = 0; m < this->getModels().size(); m++) {
-        for(int t = 0; t < this->getModels()[m].getTriangles().size(); t++) {
+        for(int t = 0; t < this->getModels()[m].mTriangles.size(); t++) {
             Triangle transformedTriangle;
             for (size_t i = 0; i < this->getModels()[m].mTriangles[t].vertex.size(); i++) {
                 transformedTriangle.vertex[i] = this->getModels()[m].getTransformation() * this->getModels()[m].mTriangles[t].vertex[i];
@@ -35,6 +35,7 @@ bool Scene::intersect(const Ray &ray, HitRecord &hitRecord,
                 hit = true;
                 hitRecord.modelId = m;
                 hitRecord.triangleId = t;
+                hitRecord.color = this->getModels()[m].getMaterial().color;
             }
         }
     }
@@ -70,8 +71,9 @@ bool Scene::triangleIntersect(const Ray &ray, const Triangle &triangle,
     hitRecord.intersectionPoint = ray.origin + ray.direction * HRparameter;
     hitRecord.parameter = HRparameter;
     hitRecord.rayDirection = ray.direction;
-    }
     return true;
+    }
+    return false;
 }
 
 /** Aufgabenblatt 3: Gibt zurück ob ein gegebener Strahl eine Kugel der Szene trifft

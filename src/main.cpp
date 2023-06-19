@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 #include <random>
-
+#include "Color.hpp"
 #include "Scene.hpp"
 #include "SolidRenderer.hpp"
 #include "WireframeRenderer.hpp"
@@ -35,8 +35,8 @@ int main(int argc, char **argv) {
     scene->load(path_vector);
 
 
-    /* Aufgabenblatt 1: Instanziieren Sie einen WireframeRenderer */
-    auto renderer = std::make_shared<WireframeRenderer>(scene, img);
+    //Aufgabenblatt 1: Instanziieren Sie einen WireframeRenderer */
+    //auto renderer = std::make_shared<WireframeRenderer>(scene, img);
     /* Aufgabenblatt 1, Aufgabe 2: Testen Sie Ihre drawBresenhamLine-Methode hier */
     // Draw a line using the Bresenham algorithm
     // Save the image to a file
@@ -187,8 +187,8 @@ int main(int argc, char **argv) {
 
     /* Aufgabenblatt 2, Aufgabe 1: Rufen Sie Ihre renderScene-Methode hier auf */
 
-  renderer->renderScene(wireframeColor);
-  img->writeAsPPM("wireframe.ppm");
+ // renderer->renderScene(wireframeColor);
+ // img->writeAsPPM("wireframe.ppm");
 
 
   /* Setup der Camera - Erst ab Aufgabenblatt 3 relevant. */
@@ -232,7 +232,29 @@ int main(int argc, char **argv) {
     cube4.setTranslation(GLVector(0.0, -100.0, 0.0));
     cube4.setScale(GLVector(500, 0.01, 500));
   /* Stelle materialeigenschaften zur verfügung (Relevant für Aufgabenblatt 4)*/
-
+    Color bunnyColor = Color(0.0f,1.0f,0.0f);
+    Color cube1Color = Color(0.9,0.9,0.3);
+    Material bunnyMaterial;
+    bunnyMaterial.color = bunnyColor;
+    Material cube1Material;
+    cube1Material.color = cube1Color;
+    Material cube2Material;
+    cube2Material.color = Color(0.9,0.4,0.3);
+    Material cube3Material;
+    cube3Material.color = Color(0.1,0.0,0.0);
+    Material cube4Material;
+    cube4Material.color =  Color(0.9,0.9,0.9);
+    Material sphere1Material;
+    sphere1Material.color = Color(0.0,0.0,1.0);
+    Material sphere2Material;
+    sphere2Material.color = Color(0.0,1.0,1.0);
+    bunny.setMaterial(bunnyMaterial);
+    cube1.setMaterial(cube1Material);
+    cube2.setMaterial(cube2Material);
+    cube3.setMaterial(cube3Material);
+    cube4.setMaterial(cube4Material);
+    scene->getSpheres()[0].setMaterial(sphere1Material);
+    scene->getSpheres()[1].setMaterial(sphere2Material);
   /* Aufgabenblatt 4  Fügen Sie ein Licht zur Szene hinzu */
   
     
