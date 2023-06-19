@@ -48,7 +48,30 @@ bool Scene::intersect(const Ray &ray, HitRecord &hitRecord,
 bool Scene::triangleIntersect(const Ray &ray, const Triangle &triangle,
                               HitRecord &hitRecord, const float epsilon) {
     //vertex[1] = b, vertex[2] = c, vertex[0] = a
-    return false;
+
+    GLVector ab = triangle.vertex[1]- triangle.vertex[0];
+    GLVector ac = triangle.vertex[2]- triangle.vertex[0];
+    GLVector normal = crossProduct(ab, ac);
+    double denominator = dotProduct(ray.direction, normal);
+    if (denominator <= 0.0) return false;
+    GLVector ap = ray.origin - triangle.vertex[0];
+    double HRparameter = dotProduct(ap, normal);
+    if (HRparameter < 0.0) return false;
+    GLVector e = crossProduct(ray.direction, ap);
+    double v = dotProduct(ac, e);
+    if (v < 0.0 || v > denominator) return false;
+    double w = -dotProduct(ab, e);
+    if (w < 0.0 || (v + w) > denominator) return false;
+    double ood = 1.0 / denominator;
+    HRparameter *= ood;
+    if (hitRecord.parameter > HRparameter) {
+    hitRecord.rayDirection = ray.direction;
+    hitRecord.normal = normal;
+    hitRecord.intersectionPoint = ray.origin + ray.direction * HRparameter;
+    hitRecord.parameter = HRparameter;
+    hitRecord.rayDirection = ray.direction;
+    }
+    return true;
 }
 
 /** Aufgabenblatt 3: Gibt zurück ob ein gegebener Strahl eine Kugel der Szene trifft
