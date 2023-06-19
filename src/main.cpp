@@ -27,6 +27,9 @@ int main(int argc, char **argv) {
     std::vector <std::string> path_vector;
     path_vector.push_back(std::string("../data/bunny/bunny_scaled.ply"));
     path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
+    path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
+    path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
+    path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
     // Erzeuge die Szene mit dem default Konstruktor und lade die Modelle
     auto scene = std::make_shared<Scene>();
     scene->load(path_vector);
@@ -167,21 +170,22 @@ int main(int argc, char **argv) {
     renderer->seedFillArea(s15, borderColor, lightOrange);
 */
 
-  /* Aufgabenblatt 2, Aufgabe 3: Setzen Sie die Transformationen der Modelle */
-  Color wireframeColor(1.0, 0.5, 0.0);
+ /* Aufgabenblatt 2, Aufgabe 3: Setzen Sie die Transformationen der Modelle */
+    /**
+    Color wireframeColor(1.0, 0.5, 0.0);
 
-  Model &bunny = scene->getModels()[0];
-  bunny.setTranslation(GLVector(250.0, 100.0, 0.0));
-  bunny.setRotation(GLVector(0.0, M_PI/180*5.0, 0.0));
-  bunny.setScale(GLVector(0.8, 0.8, 0.8));
+    Model &bunny = scene->getModels()[0];
+    bunny.setTranslation(GLVector(250.0, 100.0, 0.0));
+    bunny.setRotation(GLVector(0.0, M_PI/180*5.0, 0.0));
+    bunny.setScale(GLVector(0.8, 0.8, 0.8));
 
-  Model &cube = scene->getModels()[1];
-  cube.setTranslation(GLVector(100.0, 100.0, 0.0));
-  cube.setRotation(GLVector(M_PI/180*20.0, M_PI/180*45.0, 0.0));
-  cube.setScale(GLVector(0.9, 0.9, 0.9));
+    Model &cube = scene->getModels()[1];
+    cube.setTranslation(GLVector(100.0, 100.0, 0.0));
+    cube.setRotation(GLVector(M_PI/180*20.0, M_PI/180*45.0, 0.0));
+    cube.setScale(GLVector(0.9, 0.9, 0.9));
+    /*
 
-
-  /* Aufgabenblatt 2, Aufgabe 1: Rufen Sie Ihre renderScene-Methode hier auf */
+    /* Aufgabenblatt 2, Aufgabe 1: Rufen Sie Ihre renderScene-Methode hier auf */
 
   renderer->renderScene(wireframeColor);
   img->writeAsPPM("wireframe.ppm");
@@ -209,12 +213,24 @@ int main(int argc, char **argv) {
 
   /* Aufgabenblatt 3: Erzeugen Sie mindestens eine Kugel und fügen Sie diese zur Szene hinzu*/
 
-  scene->addSphere(Sphere(GLPoint(50.0, 50.0, 0.0), 5.0));
+  scene->addSphere(Sphere(GLPoint(-150.0, 0.0, -30.0), 50.0));
+  scene->addSphere(Sphere(GLPoint(150.0, 0.0, -30.0), 50.0));
     
   /* Aufgabenblatt 4: Setzen Sie materialeigenschaften für die Kugelen und die Modelle. Die Materialeigenschaften für eine Darstellung entsprechend der Beispiellösung ist in der Aufgabenstellung gegeben. */
 
   /* Aufgabenblatt 3: (Wenn nötig) Transformationen der Modelle im World space, sodass sie von der Kamera gesehen werden könnnen. Die nötigen Transformationen für eine Darstellung entsprechend der Beispiellösung ist in der Aufgabenstellung gegeben. */
-
+    Model &bunny = scene->getModels()[0];
+    bunny.setTranslation(GLVector(0.0, -10.0, -30.0));
+    bunny.setRotation(GLVector(0.0, M_PI/180*170.0, 0.0));
+    Model &cube1 = scene->getModels()[1];
+    cube1.setTranslation(GLVector(-60.0, -50.0, -0.0));
+    Model &cube2 = scene->getModels()[2];
+    cube2.setTranslation(GLVector(60.0, 50.0, -50.0));
+    Model &cube3 = scene->getModels()[2];
+    cube3.setTranslation(GLVector(-80.0, 10.0, -100.0));
+    Model &cube4 = scene->getModels()[3];
+    cube4.setTranslation(GLVector(0.0, -100.0, 0.0));
+    cube4.setScale(GLVector(500, 0.01, 500));
   /* Stelle materialeigenschaften zur verfügung (Relevant für Aufgabenblatt 4)*/
 
   /* Aufgabenblatt 4  Fügen Sie ein Licht zur Szene hinzu */
