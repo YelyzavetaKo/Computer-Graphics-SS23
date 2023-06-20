@@ -201,7 +201,7 @@ int main(int argc, char **argv) {
   /* Aufgabenblatt 3:  kommentieren Sie die Zeilen wieder ein, die eine Kamera erzeugen und zur Scene hinzufügen*/
   
   auto cam = std::make_shared<Camera>();
-  GLPoint eye = GLPoint(0.0, 0.0, 300.0);
+  GLPoint eye = GLPoint(0.0, 0.0, 200.0);
   cam->setEyePoint(eye);
   cam->setUp(GLVector(0.0, 1.0, 0.0));
   GLVector viewDirection = GLVector(0.0, 0, -1.0);
@@ -220,15 +220,15 @@ int main(int argc, char **argv) {
 
   /* Aufgabenblatt 3: (Wenn nötig) Transformationen der Modelle im World space, sodass sie von der Kamera gesehen werden könnnen. Die nötigen Transformationen für eine Darstellung entsprechend der Beispiellösung ist in der Aufgabenstellung gegeben. */
     Model &bunny = scene->getModels()[0];
-    bunny.setTranslation(GLVector(0.0, -10.0, -30.0));
+    bunny.setTranslation(GLVector(0.0, 10.0, -30.0));
     bunny.setRotation(GLVector(0.0, M_PI/180*170.0, 0.0));
     Model &cube1 = scene->getModels()[1];
     cube1.setTranslation(GLVector(-60.0, -50.0, -0.0));
     Model &cube2 = scene->getModels()[2];
     cube2.setTranslation(GLVector(60.0, 50.0, -50.0));
-    Model &cube3 = scene->getModels()[2];
+    Model &cube3 = scene->getModels()[3];
     cube3.setTranslation(GLVector(-80.0, 10.0, -100.0));
-    Model &cube4 = scene->getModels()[3];
+    Model &cube4 = scene->getModels()[4];
     cube4.setTranslation(GLVector(0.0, -100.0, 0.0));
     cube4.setScale(GLVector(500, 0.01, 500));
   /* Stelle materialeigenschaften zur verfügung (Relevant für Aufgabenblatt 4)*/
@@ -241,7 +241,7 @@ int main(int argc, char **argv) {
     Material cube2Material;
     cube2Material.color = Color(0.9,0.4,0.3);
     Material cube3Material;
-    cube3Material.color = Color(0.1,0.0,0.0);
+    cube3Material.color = Color(1.0,0.0,0.0);
     Material cube4Material;
     cube4Material.color =  Color(0.9,0.9,0.9);
     Material sphere1Material;
