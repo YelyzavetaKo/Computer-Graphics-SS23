@@ -33,6 +33,7 @@ bool Scene::intersect(const Ray &ray, HitRecord &hitRecord,
                 transformedTriangle.vertex[i] = this->getModels()[m].getTransformation() * this->getModels()[m].mTriangles[t].vertex[i];
             }
             if (triangleIntersect(ray, transformedTriangle, hitRecord, epsilon)) {
+                // std::cout << m;
                 hit = true;
                 hitRecord.modelId = m;
                 hitRecord.triangleId = t;
@@ -53,13 +54,14 @@ bool Scene::triangleIntersect(const Ray &ray, const Triangle &triangle,
 
     GLVector ab = triangle.vertex[1]- triangle.vertex[0];
     GLVector ac = triangle.vertex[2]- triangle.vertex[0];
+    GLVector qp = GLVector(-ray.direction(0), -ray.direction(1), -ray.direction(2));
     GLVector normal = crossProduct(ab, ac);
-    double denominator = dotProduct(ray.direction, normal);
+    double denominator = dotProduct(qp, normal);
     if (denominator <= 0.0) return false;
     GLVector ap = ray.origin - triangle.vertex[0];
     double HRparameter = dotProduct(ap, normal);
     if (HRparameter < 0.0) return false;
-    GLVector e = crossProduct(ray.direction, ap);
+    GLVector e = crossProduct(qp, ap);
     double v = dotProduct(ac, e);
     if (v < 0.0 || v > denominator) return false;
     double w = -dotProduct(ab, e);
@@ -75,6 +77,64 @@ bool Scene::triangleIntersect(const Ray &ray, const Triangle &triangle,
     return true;
     }
     return false;
+
+    // t = (p - e) ° n  /  v ° n
+    // GLVector ab = triangle.vertex[1] - triangle.vertex[0];
+    // GLVector ac = triangle.vertex[2] - triangle.vertex[0];
+    // GLVector normal = crossProduct(ab, ac);
+    // double d = dotProduct(ray.direction, normal);
+    // if (d <= 0) {
+    //   return false;
+    // }
+    // GLVector difference = triangle.vertex[0] - ray.origin;
+    // float t = dotProduct(difference, normal) / dotProduct(ray.direction, normal);
+    // if (t <= 0 || t > d) {
+    //   return false;
+    // }
+
+    
+    /* GLVector ab = triangle.vertex[1] - triangle.vertex[0];
+    GLVector ac = triangle.vertex[2] - triangle.vertex[0];
+    GLVector qp = ray.direction;
+    // Compute triangle normal. Can be precalculated or cached if
+    // intersecting multiple segments against the same triangle
+    GLVector n = crossProduct(ab, ac);
+    // Compute denominator d. If d <= 0, segment is parallel to or points
+    // away from triangle, so exit early
+    double d = dotProduct(qp, n);
+    if (d <= 0.0f) return false;
+    // Compute intersection t value of pq with plane of triangle. A ray
+    // intersects iff 0 <= t. Segment intersects iff 0 <= t <= 1. Delay
+    // dividing by d until intersection has been found to pierce triangle
+    GLVector ap = ray.origin - triangle.vertex[0];
+    double t = dotProduct(n, ap);
+    // if (t < 0.0f) return false;
+    if (t > d) return false; // For segment; exclude this code line for a ray test
+
+    // Compute barycentric coordinate components and test if within bounds
+    GLVector e = crossProduct(qp, ap);
+    double v = dotProduct(ac, e);
+    if (v < 0.0f || v > d) return false;
+    double w = -dotProduct(ab, e);
+    if (w < 0.0f || v + w > d) return false;
+    // Segment/ray intersects triangle. Perform delayed division and
+    // compute the last barycentric coordinate component
+    double ood = 1.0f / d;
+    t *= ood;
+    v *= ood;
+    w *= ood;
+    double u = 1.0f - v - w;
+
+    if (t <= hitRecord.parameter) {
+      hitRecord.parameter = t;
+      hitRecord.intersectionPoint = ray.origin + (t * ray.direction);
+      hitRecord.rayDirection = ray.direction;
+      hitRecord.normal = n;
+      hitRecord.normal.normalize();
+
+      return true;
+    }
+    return false; */
 }
 
 /** Aufgabenblatt 3: Gibt zurück ob ein gegebener Strahl eine Kugel der Szene trifft

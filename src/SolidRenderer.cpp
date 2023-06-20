@@ -26,7 +26,6 @@ void SolidRenderer::renderRaycast() {
     // Parallelisierbarkeit zu verbessern
 
     // Ohne parallelisierung:
-
     for(size_t i = 0; i < mImage->getHeight(); ++i ){
         computeImageRow( i );
     }
@@ -43,17 +42,16 @@ void SolidRenderer::renderRaycast() {
 
 void SolidRenderer::computeImageRow(size_t rowNumber) {
     for(size_t column = 0; column < mImage->getWidth(); ++column){
-        Ray ray = mCamera->getRay(rowNumber, column);
+        Ray ray = mCamera->getRay(column, rowNumber);
         Color color = Color(1.0, 1.0, 1.0);
         HitRecord pxel = {.color = color,.parameter = INFINITY, .triangleId = -1, .modelId = -1, .sphereId = -1, };
         const float epsilon = 0.0001;
         if (mScene->intersect(ray, pxel,epsilon)) {
-            mImage->setValue(rowNumber, column, pxel.color);
+            mImage->setValue(column, rowNumber, pxel.color);
         }else {
-            mImage->setValue(rowNumber, column, Color(1.0, 1.0, 1.0));
+            mImage->setValue(column, rowNumber, Color(1.0, 1.0, 1.0));
         }
     }
-
 }
 /**
  * Aufgabenblatt 3: Hier wird das Raycasting implementiert. Siehe Aufgabenstellung!
