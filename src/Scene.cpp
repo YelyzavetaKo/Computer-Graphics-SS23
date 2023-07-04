@@ -203,7 +203,7 @@ void Scene::load(const std::vector<std::string> &pFiles) {
                 << " Faces)" << std::endl;
       auto faces = meshes[i]->mFaces;
       auto vertices = meshes[i]->mVertices;
-
+      bool hasNormals = false;
       // Für alle Faces einzelner Meshes
       for (int j = 0; j < meshes[i]->mNumFaces; j++) {
         // Dreieck konstruieren und nötige Werte berechnen
@@ -212,12 +212,16 @@ void Scene::load(const std::vector<std::string> &pFiles) {
         tri.vertex[0] = GLPoint(vertices[faces[j].mIndices[0]].x,
                                 vertices[faces[j].mIndices[0]].y,
                                 vertices[faces[j].mIndices[0]].z);
+        if(meshes[i]->HasNormals()){
+          std::cout << "Mesh hat Normals" << std::endl;
+        }
         tri.vertex[1] = GLPoint(vertices[faces[j].mIndices[1]].x,
                                 vertices[faces[j].mIndices[1]].y,
                                 vertices[faces[j].mIndices[1]].z);
         tri.vertex[2] = GLPoint(vertices[faces[j].mIndices[2]].x,
                                 vertices[faces[j].mIndices[2]].y,
                                 vertices[faces[j].mIndices[2]].z);
+
         GLVector normal = crossProduct(tri.vertex[1] - tri.vertex[0],
                                        tri.vertex[2] - tri.vertex[0]);
         normal.normalize();

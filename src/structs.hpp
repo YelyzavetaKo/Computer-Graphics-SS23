@@ -45,5 +45,6 @@ struct HitRecord {
 
 struct Triangle {
   std::array<GLPoint, 3> vertex;
+
   GLVector normal;
 };

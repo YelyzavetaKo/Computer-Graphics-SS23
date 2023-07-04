@@ -5,20 +5,24 @@
 #include <iostream>
 
 class GLPoint {
- public:
-  GLPoint();
+public:
+    GLPoint();
 
-  GLPoint(double x, double y, double z);
+    GLPoint(double x, double y, double z);
 
-  double operator()(int i) const;
+    double operator()(int i) const;
 
-  double &operator()(int i);
+    double &operator()(int i);
 
- private:
-  friend class GLMatrix;
-  double point[3];
+    GLVector getNormal() const;
+
+    void setNormal(GLVector normal);
+
+private:
+    friend class GLMatrix;
+    double point[3];
+    GLVector mNormal;
 };
-
 /**
 ** Gibt die Einträge des Punktes auf drei Nachkommastellen gerundet aus
 **/
@@ -30,3 +34,5 @@ inline std::ostream &operator<<(std::ostream &os, const GLPoint &m) {
   os << " ]";
   return os;
 }
+
+
