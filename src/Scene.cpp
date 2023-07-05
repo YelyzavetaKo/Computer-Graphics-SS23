@@ -23,7 +23,7 @@ bool Scene::intersect(const Ray &ray, HitRecord &hitRecord,
       if (sphereIntersect(ray, this->getSpheres()[s], hitRecord, epsilon)) {
         hit = true;
         hitRecord.sphereId = s;
-        hitRecord.color = this->getSpheres()[s].getMaterial().color;
+        // hitRecord.color = this->getSpheres()[s].getMaterial().color;
       }
     }
     for (int m = 0; m < this->getModels().size(); m++) {
@@ -37,7 +37,7 @@ bool Scene::intersect(const Ray &ray, HitRecord &hitRecord,
                 hit = true;
                 hitRecord.modelId = m;
                 hitRecord.triangleId = t;
-                hitRecord.color = this->getModels()[m].getMaterial().color;
+                // hitRecord.color = this->getModels()[m].getMaterial().color;
             }
         }
     }
@@ -74,67 +74,13 @@ bool Scene::triangleIntersect(const Ray &ray, const Triangle &triangle,
     hitRecord.intersectionPoint = ray.origin + ray.direction * HRparameter;
     hitRecord.parameter = HRparameter;
     hitRecord.rayDirection = ray.direction;
+    hitRecord.beta = v * ood;
+    hitRecord.gamma = w * ood;
+    hitRecord.alpha = 1.0 - hitRecord.beta - hitRecord.gamma;
+    // std::cout << "alpha " << hitRecord.alpha << "\tbeta " << hitRecord.beta << "\tgamma " << hitRecord.gamma << std::endl;
     return true;
     }
     return false;
-
-    // t = (p - e) ° n  /  v ° n
-    // GLVector ab = triangle.vertex[1] - triangle.vertex[0];
-    // GLVector ac = triangle.vertex[2] - triangle.vertex[0];
-    // GLVector normal = crossProduct(ab, ac);
-    // double d = dotProduct(ray.direction, normal);
-    // if (d <= 0) {
-    //   return false;
-    // }
-    // GLVector difference = triangle.vertex[0] - ray.origin;
-    // float t = dotProduct(difference, normal) / dotProduct(ray.direction, normal);
-    // if (t <= 0 || t > d) {
-    //   return false;
-    // }
-
-    
-    /* GLVector ab = triangle.vertex[1] - triangle.vertex[0];
-    GLVector ac = triangle.vertex[2] - triangle.vertex[0];
-    GLVector qp = ray.direction;
-    // Compute triangle normal. Can be precalculated or cached if
-    // intersecting multiple segments against the same triangle
-    GLVector n = crossProduct(ab, ac);
-    // Compute denominator d. If d <= 0, segment is parallel to or points
-    // away from triangle, so exit early
-    double d = dotProduct(qp, n);
-    if (d <= 0.0f) return false;
-    // Compute intersection t value of pq with plane of triangle. A ray
-    // intersects iff 0 <= t. Segment intersects iff 0 <= t <= 1. Delay
-    // dividing by d until intersection has been found to pierce triangle
-    GLVector ap = ray.origin - triangle.vertex[0];
-    double t = dotProduct(n, ap);
-    // if (t < 0.0f) return false;
-    if (t > d) return false; // For segment; exclude this code line for a ray test
-
-    // Compute barycentric coordinate components and test if within bounds
-    GLVector e = crossProduct(qp, ap);
-    double v = dotProduct(ac, e);
-    if (v < 0.0f || v > d) return false;
-    double w = -dotProduct(ab, e);
-    if (w < 0.0f || v + w > d) return false;
-    // Segment/ray intersects triangle. Perform delayed division and
-    // compute the last barycentric coordinate component
-    double ood = 1.0f / d;
-    t *= ood;
-    v *= ood;
-    w *= ood;
-    double u = 1.0f - v - w;
-
-    if (t <= hitRecord.parameter) {
-      hitRecord.parameter = t;
-      hitRecord.intersectionPoint = ray.origin + (t * ray.direction);
-      hitRecord.rayDirection = ray.direction;
-      hitRecord.normal = n;
-      hitRecord.normal.normalize();
-
-      return true;
-    }
-    return false; */
 }
 
 /** Aufgabenblatt 3: Gibt zurück ob ein gegebener Strahl eine Kugel der Szene trifft
@@ -203,7 +149,8 @@ void Scene::load(const std::vector<std::string> &pFiles) {
                 << " Faces)" << std::endl;
       auto faces = meshes[i]->mFaces;
       auto vertices = meshes[i]->mVertices;
-      bool hasNormals = false;
+      auto normals = meshes[i]->mNormals;
+
       // Für alle Faces einzelner Meshes
       for (int j = 0; j < meshes[i]->mNumFaces; j++) {
         // Dreieck konstruieren und nötige Werte berechnen
@@ -212,16 +159,16 @@ void Scene::load(const std::vector<std::string> &pFiles) {
         tri.vertex[0] = GLPoint(vertices[faces[j].mIndices[0]].x,
                                 vertices[faces[j].mIndices[0]].y,
                                 vertices[faces[j].mIndices[0]].z);
-        if(meshes[i]->HasNormals()){
-          std::cout << "Mesh hat Normals" << std::endl;
-        }
+        tri.vertex[0].setNormal(GLVector(normals[faces[j].mIndices[0]][0], normals[faces[j].mIndices[0]][1], normals[faces[j].mIndices[0]][2]));
         tri.vertex[1] = GLPoint(vertices[faces[j].mIndices[1]].x,
                                 vertices[faces[j].mIndices[1]].y,
                                 vertices[faces[j].mIndices[1]].z);
+        tri.vertex[1].setNormal(GLVector(normals[faces[j].mIndices[1]][0], normals[faces[j].mIndices[1]][1], normals[faces[j].mIndices[1]][2]));
         tri.vertex[2] = GLPoint(vertices[faces[j].mIndices[2]].x,
                                 vertices[faces[j].mIndices[2]].y,
                                 vertices[faces[j].mIndices[2]].z);
-
+        tri.vertex[2].setNormal(GLVector(normals[faces[j].mIndices[2]][0], normals[faces[j].mIndices[2]][1], normals[faces[j].mIndices[2]][2]));
+        // std::cout << "normal " << tri.vertex[2].getNormal() << std::endl;
         GLVector normal = crossProduct(tri.vertex[1] - tri.vertex[0],
                                        tri.vertex[2] - tri.vertex[0]);
         normal.normalize();

@@ -35,6 +35,10 @@ struct HitRecord {
   int modelId;   // model index of the object hit by ray (default should be -1)
   int sphereId;  // sphere index of the object hit by ray (default should be -1)
 
+  double alpha; // first barycentric coordinate paramter
+  double beta; // second barycentric coordinate paramter
+  double gamma; // third barycentric coordinate paramter
+
   void print() const {
     std::cout << "Intersection at Parameter: " << parameter << " with triangle "
               << triangleId << " at point " << intersectionPoint(0) << ", "
