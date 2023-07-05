@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#include "GLVector.hpp"
+
 class GLPoint {
  public:
   GLPoint();
@@ -14,7 +16,12 @@ class GLPoint {
 
   double &operator()(int i);
 
+  GLVector getNormal() const;
+
+  void setNormal(GLVector normal);
+
  private:
+  GLVector mNormal;
   friend class GLMatrix;
   double point[3];
 };

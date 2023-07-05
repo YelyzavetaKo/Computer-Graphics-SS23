@@ -47,6 +47,7 @@ void SolidRenderer::computeImageRow(size_t rowNumber) {
         HitRecord pxel = {.color = color,.parameter = INFINITY, .triangleId = -1, .modelId = -1, .sphereId = -1, };
         const float epsilon = 0.0001;
         if (mScene->intersect(ray, pxel,epsilon)) {
+            this->shade(pxel);
             mImage->setValue(column, rowNumber, pxel.color);
         }else {
             mImage->setValue(column, rowNumber, Color(1.0, 1.0, 1.0));
@@ -101,4 +102,36 @@ void SolidRenderer::computeImageRow(size_t rowNumber) {
 *  Aufgabenblatt 4: Hier wird das raytracing implementiert. Siehe Aufgabenstellung!
 */
 void SolidRenderer::shade(HitRecord &r) {
+  double k_a = 0.4; // Coefficient for ambient light intensity
+  double k_d = 0.4; // Coefficient for diffuse light intensity
+  double k_s = 0.2; // Coefficient for specular light intensity
+  int n = 20; // Roughness parameter
+
+  // I = k_s * I_s + k_d * I_d + k_a * I_a
+  // I_s = I_i * cos^n(omega) = I_i * (R ° V)^n   mit I_i Intesität der Lichtquelle i, V Betrachtungsrichtung, R Reflexionsrichtung, n Rauheit
+  // I_d = I_i * cos(theta) = I_i * (L ° N)   mit I_i Intesität der Lichtquelle i, L Lichtvektor, N Punktnormale
+
+  GLPoint lightPos = GLPoint(50.0, 50.0, 200.0);
+  double I_i = 1.0;
+
+  GLVector N = GLVector(0.0, 0.0, 0.0);  
+  if (r.modelId >= 0) {
+    r.color = mScene->getModels()[r.modelId].getMaterial().color;
+    N = (r.alpha * mScene->getModels()[r.modelId].mTriangles[r.triangleId].vertex[0].getNormal()) + (r.beta * mScene->getModels()[r.modelId].mTriangles[r.triangleId].vertex[1].getNormal()) + (r.gamma * mScene->getModels()[r.modelId].mTriangles[r.triangleId].vertex[2].getNormal());
+    // std::cout << "pNormal " << N << "\tnorm " << N.norm() << std::endl; 
+  }
+  if (r.sphereId >= 0) {
+    r.color = mScene->getSpheres()[r.sphereId].getMaterial().color;
+    N = r.intersectionPoint - mScene->getSpheres()[r.sphereId].getPosition();
+    N.normalize();
+  }
+  GLVector L = lightPos - r.intersectionPoint;
+  L.normalize();
+  GLVector R = 2 * dotProduct(L, N) * N - L;
+  R.normalize();
+  GLVector V = mCamera->getEyePoint() - r.intersectionPoint;
+  V.normalize();
+
+  double I = k_s * (I_i * std::pow(dotProduct(R, V), n)) + k_d * (I_i * dotProduct(L, N)) + k_a * I_i;
+  r.color *= I;
 }
