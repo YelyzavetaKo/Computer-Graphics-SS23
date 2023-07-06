@@ -41,17 +41,24 @@ void SolidRenderer::renderRaycast() {
 }
 
 void SolidRenderer::computeImageRow(size_t rowNumber) {
+  Color color = Color(1.0, 1.0, 1.0);
+  int antiAliasing = 1;
     for(size_t column = 0; column < mImage->getWidth(); ++column){
-        Ray ray = mCamera->getRay(column, rowNumber);
-        Color color = Color(1.0, 1.0, 1.0);
-        HitRecord pxel = {.color = color,.parameter = INFINITY, .triangleId = -1, .modelId = -1, .sphereId = -1, };
-        const float epsilon = 0.0001;
-        if (mScene->intersect(ray, pxel,epsilon)) {
-            this->shade(pxel);
-            mImage->setValue(column, rowNumber, pxel.color);
-        }else {
-            mImage->setValue(column, rowNumber, Color(1.0, 1.0, 1.0));
+        Color finalColor = Color(0.0, 0.0, 0.0);
+
+        for (int i = 0; i < antiAliasing; i++) {
+          Ray ray = mCamera->getRay(column, rowNumber);
+          HitRecord pxel = {.color = color,.parameter = INFINITY, .triangleId = -1, .modelId = -1, .sphereId = -1, };
+          if (mScene->intersect(ray, pxel, EPSILON)) {
+              this->shade(pxel);
+              finalColor += pxel.color;
+          }
+          else {
+            finalColor += color;
+          }
         }
+        finalColor /= antiAliasing;
+        mImage->setValue(column, rowNumber, finalColor);
     }
 }
 /**

@@ -233,7 +233,7 @@ int main(int argc, char **argv) {
     cube4.setTranslation(GLVector(0.0, -100.0, 0.0));
     cube4.setScale(GLVector(500, 0.01, 500));
     Model &cube5 = scene->getModels()[5];
-    cube5.setScale(GLVector(300, 300, 300));
+    cube5.setScale(GLVector(500, 500, 500));
 
     // Flip cube5 normals
     for (Triangle tri : cube5.mTriangles) {
