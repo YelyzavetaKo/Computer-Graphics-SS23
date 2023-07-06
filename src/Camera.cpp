@@ -65,6 +65,12 @@ Ray Camera::getRay(int x, int y) const {
            (2.0 * (y - mHeight / 2) / (double)mHeight));
 
   r.direction(0) *= aspectRatio;
+
+  // Aufgabe 4 add jitter for anti-aliasing
+  double jitterx = ( drand48() - 0.5 ) / (double)mWidth;
+  double jittery = ( drand48() - 0.5 ) / (double)mHeight;
+  r.direction = r.direction + mViewTransform.getColumn(0) * jitterx + mViewTransform.getColumn(1) * jittery;
+
   r.direction.normalize();
 
   return r;
