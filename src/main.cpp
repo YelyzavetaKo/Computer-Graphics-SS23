@@ -30,6 +30,7 @@ int main(int argc, char **argv) {
     path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
     path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
     path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
+    path_vector.push_back(std::string("../data/basicObjects/cube_scaled.ply"));
     // Erzeuge die Szene mit dem default Konstruktor und lade die Modelle
     auto scene = std::make_shared<Scene>();
     scene->load(path_vector);
@@ -231,11 +232,20 @@ int main(int argc, char **argv) {
     Model &cube4 = scene->getModels()[4];
     cube4.setTranslation(GLVector(0.0, -100.0, 0.0));
     cube4.setScale(GLVector(500, 0.01, 500));
+    Model &cube5 = scene->getModels()[5];
+    cube5.setScale(GLVector(300, 300, 300));
+
+    // Flip cube5 normals
+    for (Triangle tri : cube5.mTriangles) {
+      tri.normal = GLVector(-tri.normal(0), -tri.normal(1), -tri.normal(2));
+    }
+
   /* Stelle materialeigenschaften zur verfügung (Relevant für Aufgabenblatt 4)*/
-    Color bunnyColor = Color(0.0f,1.0f,0.0f);
+    Color bunnyColor = Color(0.0f,0.0f,0.0f);
     Color cube1Color = Color(0.9,0.9,0.3);
     Material bunnyMaterial;
     bunnyMaterial.color = bunnyColor;
+    bunnyMaterial.reflection = 1.0;
     Material cube1Material;
     cube1Material.color = cube1Color;
     Material cube2Material;
@@ -244,6 +254,8 @@ int main(int argc, char **argv) {
     cube3Material.color = Color(1.0,0.0,0.0);
     Material cube4Material;
     cube4Material.color =  Color(0.9,0.9,0.9);
+    Material cube5Material;
+    cube5Material.color =  Color(0.9,0.9,0.9);
     Material sphere1Material;
     sphere1Material.color = Color(0.0,0.0,1.0);
     Material sphere2Material;
@@ -253,6 +265,7 @@ int main(int argc, char **argv) {
     cube2.setMaterial(cube2Material);
     cube3.setMaterial(cube3Material);
     cube4.setMaterial(cube4Material);
+    cube5.setMaterial(cube5Material);
     scene->getSpheres()[0].setMaterial(sphere1Material);
     scene->getSpheres()[1].setMaterial(sphere2Material);
   /* Aufgabenblatt 4  Fügen Sie ein Licht zur Szene hinzu */

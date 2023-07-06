@@ -111,8 +111,9 @@ void SolidRenderer::shade(HitRecord &r) {
   // I_s = I_i * cos^n(omega) = I_i * (R ° V)^n   mit I_i Intesität der Lichtquelle i, V Betrachtungsrichtung, R Reflexionsrichtung, n Rauheit
   // I_d = I_i * cos(theta) = I_i * (L ° N)   mit I_i Intesität der Lichtquelle i, L Lichtvektor, N Punktnormale
 
-  GLPoint lightPos = GLPoint(50.0, 50.0, 200.0);
+  GLPoint lightPos = GLPoint(-100.0, 100.0, 100.0);
   double I_i = 1.0;
+  double I_a = 1.0;
 
   GLVector N = GLVector(0.0, 0.0, 0.0);  
   if (r.modelId >= 0) {
@@ -120,11 +121,11 @@ void SolidRenderer::shade(HitRecord &r) {
     N = (r.alpha * mScene->getModels()[r.modelId].mTriangles[r.triangleId].vertex[0].getNormal()) + (r.beta * mScene->getModels()[r.modelId].mTriangles[r.triangleId].vertex[1].getNormal()) + (r.gamma * mScene->getModels()[r.modelId].mTriangles[r.triangleId].vertex[2].getNormal());
     // std::cout << "pNormal " << N << "\tnorm " << N.norm() << std::endl; 
   }
-  if (r.sphereId >= 0) {
+  else if (r.sphereId >= 0) {
     r.color = mScene->getSpheres()[r.sphereId].getMaterial().color;
     N = r.intersectionPoint - mScene->getSpheres()[r.sphereId].getPosition();
-    N.normalize();
   }
+  N.normalize();
   GLVector L = lightPos - r.intersectionPoint;
   L.normalize();
   GLVector R = 2 * dotProduct(L, N) * N - L;
@@ -132,6 +133,42 @@ void SolidRenderer::shade(HitRecord &r) {
   GLVector V = mCamera->getEyePoint() - r.intersectionPoint;
   V.normalize();
 
-  double I = k_s * (I_i * std::pow(dotProduct(R, V), n)) + k_d * (I_i * dotProduct(L, N)) + k_a * I_i;
+  double I = k_s * (I_i * std::pow(dotProduct(R, V), n)) + k_d * (I_i * dotProduct(L, N)) + k_a * I_a;
   r.color *= I;
+
+  // Schattierung
+  Ray shadowRay = Ray();
+  shadowRay.origin = r.intersectionPoint + EPSILON * r.rayDirection;
+  shadowRay.direction = lightPos - shadowRay.origin;
+  shadowRay.direction.normalize();
+
+  HitRecord shadowHR = {.color = r.color,.parameter = INFINITY, .triangleId = -1, .modelId = -1, .sphereId = -1, };
+  if (mScene->intersect(shadowRay, shadowHR, EPSILON)) {
+    if (shadowHR.parameter >= 0 && shadowHR.parameter < (lightPos - shadowRay.origin).norm()) {
+      r.color *= 0.5;
+    }
+  }
+
+  if ((r.modelId >= 0 && mScene->getModels()[r.modelId].getMaterial().reflection > 0.0) || (r.sphereId >= 0 && mScene->getSpheres()[r.sphereId].getMaterial().reflection > 0.0)) {
+    Ray reflectionRay = Ray();
+    reflectionRay.origin = r.intersectionPoint + EPSILON * r.rayDirection;
+    GLVector viewDirection = GLVector(-r.rayDirection(0), -r.rayDirection(1), -r.rayDirection(2)); // r.rayDirection;
+    viewDirection.normalize();
+    reflectionRay.direction = 2 * dotProduct(viewDirection, N) * N - viewDirection;
+    reflectionRay.direction.normalize();
+
+    // globalen HitRecord aktualisieren
+    r.triangleId = -1;
+    r.modelId = -1;
+    r.sphereId = -1;
+    r.parameter = INFINITY;
+    r.recursions++;
+
+    int maxRecursionDepth = 2;
+    if (r.recursions <= maxRecursionDepth) {
+      if (mScene->intersect(reflectionRay, r, EPSILON)) {
+        this->shade(r);
+      }
+    } 
+  }
 }
